@@ -3,7 +3,7 @@
 import { Hamburger, X } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
 
-import { Button } from '@/components/button';
+import { Button } from '@/app/components/button';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Highlight } from './highlight';
@@ -35,7 +35,10 @@ export function NavigationBar() {
     <nav className="font-[family-name:var(--font-geist-mono)]">
       <ul className="hidden text-sm capitalize sm:flex w-fit">
         {links.map(({ href, label }) => (
-          <li key={href} className="mr-4">
+          <li
+            key={href}
+            className={`mr-4 ${pathname === href ? 'font-semibold' : ''}`}
+          >
             <Highlight show={pathname === href}>
               <Link href={href}>{label}</Link>
             </Highlight>
@@ -46,7 +49,7 @@ export function NavigationBar() {
         <Hamburger size={24} />
       </Button>
       {mobileMenuOpen && (
-        <div className="absolute inset-0 z-50 flex flex-col p-8 bg-white h-svh sm:hidden">
+        <div className="absolute inset-0 z-50 flex flex-col p-4 bg-white h-svh sm:hidden">
           <Button onClick={() => setMobileMenuOpen(false)} className="ml-auto">
             <X size={32} />
           </Button>
@@ -54,11 +57,14 @@ export function NavigationBar() {
             {links.map(({ href, label }) => (
               <li
                 key={href}
-                className="pb-8 w-fit"
-                onClick={() => setMobileMenuOpen(false)}
+                className={`pb-8 w-fit ${
+                  pathname === href ? 'font-semibold' : ''
+                }`}
               >
                 <Highlight show={pathname === href}>
-                  <Link href={href}>{label}</Link>
+                  <Link href={href} onClick={() => setMobileMenuOpen(false)}>
+                    {label}
+                  </Link>
                 </Highlight>
               </li>
             ))}
