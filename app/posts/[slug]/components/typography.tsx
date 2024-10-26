@@ -10,7 +10,7 @@ export function H1({
   children,
   className,
   ...props
-}: TypographyProps<HTMLHeadingElement>) {
+}: Readonly<TypographyProps<HTMLHeadingElement>>) {
   return (
     <h1
       className={cn(
@@ -28,7 +28,7 @@ export function H2({
   children,
   className,
   ...props
-}: TypographyProps<HTMLHeadingElement>) {
+}: Readonly<TypographyProps<HTMLHeadingElement>>) {
   return (
     <h2
       className={cn(
@@ -46,7 +46,7 @@ export function H3({
   children,
   className,
   ...props
-}: TypographyProps<HTMLHeadingElement>) {
+}: Readonly<TypographyProps<HTMLHeadingElement>>) {
   return (
     <h3
       className={cn(
@@ -64,7 +64,7 @@ export function H4({
   children,
   className,
   ...props
-}: TypographyProps<HTMLHeadingElement>) {
+}: Readonly<TypographyProps<HTMLHeadingElement>>) {
   return (
     <h4
       className={cn(
@@ -82,7 +82,7 @@ export function P({
   children,
   className,
   ...props
-}: TypographyProps<HTMLParagraphElement>) {
+}: Readonly<TypographyProps<HTMLParagraphElement>>) {
   return (
     <p
       className={cn('leading-7 [&:not(:first-child)]:mt-6', className)}
@@ -93,7 +93,11 @@ export function P({
   );
 }
 
-export function Blockquote({ children, className, ...props }: TypographyProps) {
+export function Blockquote({
+  children,
+  className,
+  ...props
+}: Readonly<TypographyProps>) {
   return (
     <blockquote
       className={cn('pl-6 mt-6 italic border-l-2', className)}
@@ -108,7 +112,7 @@ export function Ul({
   children,
   className,
   ...props
-}: TypographyProps<HTMLUListElement>) {
+}: Readonly<TypographyProps<HTMLUListElement>>) {
   return (
     <ul className={cn('my-6 ml-6 list-disc [&>li]:mt-2', className)} {...props}>
       {children}
@@ -116,7 +120,11 @@ export function Ul({
   );
 }
 
-export function Code({ children, className, ...props }: TypographyProps) {
+export function Code({
+  children,
+  className,
+  ...props
+}: Readonly<TypographyProps>) {
   return (
     <code
       className={cn(

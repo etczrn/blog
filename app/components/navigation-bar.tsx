@@ -3,7 +3,7 @@
 import { Hamburger, X } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
 
-import { Button } from '@/app/components/button';
+import { Button } from '@/app/components/ui/button';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Highlight } from './highlight';
@@ -51,7 +51,7 @@ export function NavigationBar() {
       {mobileMenuOpen && (
         <div className="absolute inset-0 z-50 flex flex-col p-4 bg-white h-svh sm:hidden">
           <Button onClick={() => setMobileMenuOpen(false)} className="ml-auto">
-            <X size={32} />
+            <X size={24} />
           </Button>
           <ul className="py-8 text-4xl capitalize">
             {links.map(({ href, label }) => (

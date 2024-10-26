@@ -3,6 +3,7 @@ import path from 'path';
 
 type Metadata = {
   title: string;
+  description: string;
   publishedAt: string;
 };
 
@@ -20,9 +21,10 @@ function parseFrontmatter(rawContent: string) {
     let value = valueArr.join(': ').trim();
     value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
     metadata[key.trim() as keyof Metadata] = value;
+    console.log({ key, value, metadata });
   });
 
-  return { metadata: metadata as Metadata, content };
+  return { metadata, content };
 }
 
 // https://github.com/vercel/examples/tree/main/solutions/blog
