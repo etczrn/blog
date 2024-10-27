@@ -1,17 +1,7 @@
-import { H1, H3, H4 } from '@/app/components/ui/typography';
-import { Fragment, ReactNode } from 'react';
-import {
-  Block,
-  Caption,
-  Group,
-  LeftSide,
-  Link,
-  RightSide,
-  Section,
-  Title,
-} from './components/resume';
+import { Content, Link, ResumeBlock, Section } from './components/resume';
 
 import { FlipWords } from '@/app/components/ui/flip-words';
+import { H1 } from '@/app/components/ui/typography';
 import Image from 'next/image';
 import { Contacts } from './components/contact';
 
@@ -20,7 +10,7 @@ export default function About() {
     <>
       <Section>
         <div className="relative mx-auto my-4 max-w-fit">
-          <H1 className="inline-block px-2">김수연</H1>
+          <H1 className="inline-block px-2 mt-0">김수연</H1>
           <Image
             src={'/me.jpg'}
             alt="My Photo"
@@ -42,65 +32,8 @@ export default function About() {
           </div>
         </div>
       </Section>
-      {/* TODO: 반복되는 거 없애기 */}
-      <Section>
-        <Title>work experience</Title>
-        {WORK_EXPERIENCE.map(({ title, description, content }) => (
-          <Block key={crypto.randomUUID()}>
-            <LeftSide>
-              <H3>{title}</H3>
-              {description.map((d) => (
-                <Caption key={crypto.randomUUID()}>{d}</Caption>
-              ))}
-            </LeftSide>
-            {content && (
-              <RightSide>
-                {content.map(({ title, description }) => (
-                  <Fragment key={crypto.randomUUID()}>
-                    <H4>{title}</H4>
-                    {description && (
-                      <Group>
-                        {description?.map((d) => (
-                          <li key={crypto.randomUUID()}>{d}</li>
-                        ))}
-                      </Group>
-                    )}
-                  </Fragment>
-                ))}
-              </RightSide>
-            )}
-          </Block>
-        ))}
-      </Section>
-      <Section>
-        <Title>education</Title>
-        {EDUCATION.map(({ title, description, content }) => (
-          <Block key={crypto.randomUUID()}>
-            <LeftSide>
-              <H3>{title}</H3>
-              {description.map((d) => (
-                <Caption key={crypto.randomUUID()}>{d}</Caption>
-              ))}
-            </LeftSide>
-            {content && (
-              <RightSide>
-                {content.map(({ title, description }) => (
-                  <Fragment key={crypto.randomUUID()}>
-                    <H4>{title}</H4>
-                    {description && (
-                      <Group>
-                        {description?.map((d) => (
-                          <li key={crypto.randomUUID()}>{d}</li>
-                        ))}
-                      </Group>
-                    )}
-                  </Fragment>
-                ))}
-              </RightSide>
-            )}
-          </Block>
-        ))}
-      </Section>
+      <ResumeBlock title="work experience" content={WORK_EXPERIENCE} />
+      <ResumeBlock title="education" content={EDUCATION} />
     </>
   );
 }
@@ -110,12 +43,6 @@ const WORDS = [
   '사용자 경험을 중요하게 생각하는',
   '읽기 쉬운 코드를 짜는',
 ];
-
-type Content = {
-  title: ReactNode;
-  description: ReactNode[];
-  content?: Partial<Pick<Content, 'title' | 'description'>>[];
-};
 
 const WORK_EXPERIENCE: Content[] = [
   {

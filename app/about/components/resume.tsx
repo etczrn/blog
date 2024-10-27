@@ -2,7 +2,8 @@ import {
   LinkPreview,
   LinkPreviewProps,
 } from '@/app/components/ui/link-preview';
-import { H2, Ul } from '@/app/components/ui/typography';
+import { H2, H3, H4, Ul } from '@/app/components/ui/typography';
+import { Fragment, ReactNode } from 'react';
 
 import { HTMLElementProps } from '@/app/components/ui/types';
 import { cn } from '@/app/lib/utils';
@@ -61,13 +62,24 @@ export function RightSide({
 export function Title({
   children,
 }: Readonly<Pick<HTMLElementProps<HTMLHeadingElement>, 'children'>>) {
-  return <H2 className="capitalize">{children}</H2>;
+  return <H2 className="capitalize mt-0">{children}</H2>;
+}
+
+export function Subtitle({
+  children,
+}: Readonly<Pick<HTMLElementProps<HTMLHeadingElement>, 'children'>>) {
+  return <H3 className="mt-0">{children}</H3>;
 }
 
 export function Group({
   children,
 }: Readonly<Pick<HTMLElementProps<HTMLUListElement>, 'children'>>) {
   return <Ul className="mt-2 mb-4 last-of-type:mb-0">{children}</Ul>;
+}
+export function GroupTitle({
+  children,
+}: Readonly<Pick<HTMLElementProps<HTMLHeadingElement>, 'children'>>) {
+  return <H4 className="mt-0">{children}</H4>;
 }
 
 export function Caption({
@@ -98,5 +110,51 @@ export function Link({
     >
       {children}
     </LinkPreview>
+  );
+}
+
+export type Content = {
+  title: ReactNode;
+  description: ReactNode[];
+  content?: Partial<Pick<Content, 'title' | 'description'>>[];
+};
+
+export function ResumeBlock({
+  title,
+  content,
+}: Readonly<{
+  title: ReactNode;
+  content: Content[];
+}>) {
+  return (
+    <Section>
+      <Title>{title}</Title>
+      {content.map(({ title, description, content }) => (
+        <Block key={crypto.randomUUID()}>
+          <LeftSide>
+            <Subtitle>{title}</Subtitle>
+            {description.map((d) => (
+              <Caption key={crypto.randomUUID()}>{d}</Caption>
+            ))}
+          </LeftSide>
+          {content && (
+            <RightSide>
+              {content.map(({ title, description }) => (
+                <Fragment key={crypto.randomUUID()}>
+                  <GroupTitle>{title}</GroupTitle>
+                  {description && (
+                    <Group>
+                      {description?.map((d) => (
+                        <li key={crypto.randomUUID()}>{d}</li>
+                      ))}
+                    </Group>
+                  )}
+                </Fragment>
+              ))}
+            </RightSide>
+          )}
+        </Block>
+      ))}
+    </Section>
   );
 }

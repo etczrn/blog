@@ -27,6 +27,7 @@ export function H2({
   return (
     <h2
       className={cn(
+        'mt-10 transition-colors',
         'pb-2 text-3xl font-semibold tracking-tight border-b scroll-m-20 first:mt-0',
         className
       )}
@@ -45,6 +46,7 @@ export function H3({
   return (
     <h3
       className={cn(
+        'mt-8',
         'text-2xl font-semibold tracking-tight scroll-m-20',
         className
       )}
@@ -63,6 +65,7 @@ export function H4({
   return (
     <h4
       className={cn(
+        'mt-6',
         'text-xl font-semibold tracking-tight scroll-m-20',
         className
       )}
