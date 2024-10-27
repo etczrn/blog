@@ -34,7 +34,7 @@ export default function About() {
             }}
             className="relative -mt-12 -z-10"
           />
-          <Contacts className="justify-end -mt-8" />
+          <Contacts className="justify-end -mt-6 sm:-mt-8" />
           <div className="px-2 mt-8 text-2xl sm:px-4">
             <span className="block">저는</span>
             <FlipWords words={WORDS} className="px-0 font-bold text-teal-400" />
@@ -42,6 +42,7 @@ export default function About() {
           </div>
         </div>
       </Section>
+      {/* TODO: 반복되는 거 없애기 */}
       <Section>
         <Title>work experience</Title>
         {WORK_EXPERIENCE.map(({ title, description, content }) => (
@@ -52,30 +53,53 @@ export default function About() {
                 <Caption key={crypto.randomUUID()}>{d}</Caption>
               ))}
             </LeftSide>
-            <RightSide>
-              {content.map(({ title, description }) => (
-                <Fragment key={crypto.randomUUID()}>
-                  <H4>{title}</H4>
-                  <Group>
-                    {description.map((d) => (
-                      <li key={crypto.randomUUID()}>{d}</li>
-                    ))}
-                  </Group>
-                </Fragment>
-              ))}
-            </RightSide>
+            {content && (
+              <RightSide>
+                {content.map(({ title, description }) => (
+                  <Fragment key={crypto.randomUUID()}>
+                    <H4>{title}</H4>
+                    {description && (
+                      <Group>
+                        {description?.map((d) => (
+                          <li key={crypto.randomUUID()}>{d}</li>
+                        ))}
+                      </Group>
+                    )}
+                  </Fragment>
+                ))}
+              </RightSide>
+            )}
           </Block>
         ))}
       </Section>
       <Section>
         <Title>education</Title>
-        <Block>
-          <LeftSide>
-            <H3>중앙대학교</H3>
-            <Caption>지식경영학부 졸업</Caption>
-            <Caption>2015.03 - 2020.02</Caption>
-          </LeftSide>
-        </Block>
+        {EDUCATION.map(({ title, description, content }) => (
+          <Block key={crypto.randomUUID()}>
+            <LeftSide>
+              <H3>{title}</H3>
+              {description.map((d) => (
+                <Caption key={crypto.randomUUID()}>{d}</Caption>
+              ))}
+            </LeftSide>
+            {content && (
+              <RightSide>
+                {content.map(({ title, description }) => (
+                  <Fragment key={crypto.randomUUID()}>
+                    <H4>{title}</H4>
+                    {description && (
+                      <Group>
+                        {description?.map((d) => (
+                          <li key={crypto.randomUUID()}>{d}</li>
+                        ))}
+                      </Group>
+                    )}
+                  </Fragment>
+                ))}
+              </RightSide>
+            )}
+          </Block>
+        ))}
       </Section>
     </>
   );
@@ -90,14 +114,13 @@ const WORDS = [
 type Content = {
   title: ReactNode;
   description: ReactNode[];
-  content: Pick<Content, 'title' | 'description'>[];
+  content?: Partial<Pick<Content, 'title' | 'description'>>[];
 };
 
 const WORK_EXPERIENCE: Content[] = [
   {
     title: '(주)이제이엠컴퍼니',
     description: ['개발팀', '2024.11 - 현재'],
-    content: [],
   },
   {
     title: 'Finddy Inc.',
@@ -167,5 +190,26 @@ const WORK_EXPERIENCE: Content[] = [
         ],
       },
     ],
+  },
+];
+
+const EDUCATION: Content[] = [
+  {
+    title: '엘리스',
+    description: ['2020.12 - 2021.06'],
+    content: [
+      {
+        title: 'AI 트랙 1기 수료',
+        description: [
+          '6개월 동안 프론트, 백엔드, 머신러닝을 학습해 신입 개발자, 데이터분석가, 테크니컬 기획자가 되는 교육 과정',
+          '기간 중 총 세개의 프로젝트를 진행함으로써 React와 JavaScript에 대해 학습',
+        ],
+      },
+    ],
+  },
+  {
+    title: '중앙대학교',
+    description: ['2015.03 - 2020.02'],
+    content: [{ title: '지식경영학부 졸업' }],
   },
 ];
