@@ -13,13 +13,14 @@ import {
 
 import { FlipWords } from '@/app/components/ui/flip-words';
 import Image from 'next/image';
+import { Contacts } from './components/contact';
 
 export default function About() {
   return (
     <>
       <Section>
-        <div className="grid items-center justify-center my-4">
-          <H1 className="relative z-10 px-2">김수연</H1>
+        <div className="relative mx-auto my-4 max-w-fit">
+          <H1 className="inline-block px-2">김수연</H1>
           <Image
             src={'/me.jpg'}
             alt="My Photo"
@@ -31,9 +32,10 @@ export default function About() {
               maskSize: '100% 100%',
               maskPosition: 'center',
             }}
-            className="-mt-12"
+            className="relative -mt-12 -z-10"
           />
-          <div className="px-2 text-2xl sm:px-4">
+          <Contacts className="justify-end -mt-8" />
+          <div className="px-2 mt-8 text-2xl sm:px-4">
             <span className="block">저는</span>
             <FlipWords words={WORDS} className="px-0 font-bold text-teal-400" />
             <span className="block">개발자입니다.</span>
@@ -92,6 +94,11 @@ type Content = {
 };
 
 const WORK_EXPERIENCE: Content[] = [
+  {
+    title: '(주)이제이엠컴퍼니',
+    description: ['개발팀', '2024.11 - 현재'],
+    content: [],
+  },
   {
     title: 'Finddy Inc.',
     description: ['Tech lab. / 팀원', '2022.09 - 2024.10'],

@@ -13,7 +13,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          'p-2 transition-all rounded-full sm:hidden hover:bg-zinc-50',
+          'p-2 transition-all rounded-full hover:bg-zinc-50',
           className
         )}
         {...props}

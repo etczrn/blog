@@ -50,12 +50,15 @@ export function NavigationBar() {
           </li>
         ))}
       </ul>
-      <Button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+      <Button
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        className="sm:hidden"
+      >
         <Hamburger size={24} />
       </Button>
       {mobileMenuOpen && (
         <div className="absolute inset-0 z-50 flex flex-col p-4 bg-white h-svh sm:hidden">
-          <Button onClick={() => setMobileMenuOpen(false)} className="ml-auto">
+          <Button onClick={() => setMobileMenuOpen(false)} className="ml-auto sm:hidden">
             <X size={24} />
           </Button>
           <ul className="py-8 text-4xl capitalize">
