@@ -1,3 +1,7 @@
+import {
+  LinkPreview,
+  LinkPreviewProps,
+} from '@/app/components/ui/link-preview';
 import { H2, Ul } from '@/app/components/ui/typography';
 
 import { HTMLElementProps } from '@/app/components/ui/types';
@@ -80,21 +84,19 @@ export function Caption({
 
 export function Link({
   children,
-  className,
-  href,
-  ...props
-}: Readonly<HTMLElementProps<HTMLAnchorElement>> & { href: string }) {
+  imageSrc,
+  url,
+}: Readonly<
+  Required<Pick<LinkPreviewProps, 'children' | 'imageSrc' | 'url'>>
+>) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      className={cn(
-        'font-semibold text-teal-500 border-b border-b-teal-900 border-opacity-25 after:content-["↗"] after:mx-0.5',
-        className
-      )}
-      {...props}
+    <LinkPreview
+      isStatic
+      imageSrc={imageSrc}
+      className='font-semibold text-teal-500 border-b border-b-teal-900 border-opacity-25 after:content-["↗"] after:mx-0.5'
+      url={url}
     >
       {children}
-    </a>
+    </LinkPreview>
   );
 }

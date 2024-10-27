@@ -139,7 +139,10 @@ const WORK_EXPERIENCE: Content[] = [
       {
         title: (
           <>
-            <Link href="https://accounz.io/">어카운즈 홈페이지</Link> 개발
+            <Link imageSrc={'/accounz.png'} url="https://accounz.io/">
+              어카운즈 홈페이지
+            </Link>{' '}
+            개발
           </>
         ),
         description: [
@@ -174,14 +177,20 @@ const WORK_EXPERIENCE: Content[] = [
           'HTML, CSS, JavaScript, React, Redux에 대한 실습 강의를 진행',
           <>
             교육생의 이해를 돕기 위해{' '}
-            <Link href="https://etcz.notion.site/ELICE-d83443efe6334203811a669b27277825">
+            <Link
+              url="https://etcz.notion.site/ELICE-d83443efe6334203811a669b27277825"
+              imageSrc={'/elice-lecture.png'}
+            >
               주제별 학습 자료를 제작
             </Link>
             하고 공유해 학습 효과를 극대화
           </>,
           <>
             코치 평가에서{' '}
-            <Link href="https://docs.google.com/forms/d/1BoeeeXvR7RcqjwhxHe1Tto2pjJ9gN-fCuaaM1LmpLsI/viewanalytics">
+            <Link
+              url="https://docs.google.com/forms/d/1BoeeeXvR7RcqjwhxHe1Tto2pjJ9gN-fCuaaM1LmpLsI/viewanalytics"
+              imageSrc={'/elice-review.png'}
+            >
               {' '}
               직접 제작한 학습 자료와 강의 리딩 방식에 대해 높은 평가
             </Link>
