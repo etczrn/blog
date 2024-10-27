@@ -4,7 +4,10 @@ import path from 'path';
 type Metadata = {
   title: string;
   description: string;
+  createdAt: string;
+  updatedAt: string;
   publishedAt: string;
+  tags: string[];
 };
 
 // https://vercel.com/templates/next.js/portfolio-starter-kit
@@ -17,11 +20,13 @@ function parseFrontmatter(rawContent: string) {
   const metadata: Partial<Metadata> = {};
 
   frontMatterLines.forEach((line) => {
+    // console.log({ line });
     const [key, ...valueArr] = line.split(': ');
     let value = valueArr.join(': ').trim();
     value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
+    // console.log({ key, value });
     metadata[key.trim() as keyof Metadata] = value;
-    console.log({ key, value, metadata });
+    // console.log({ key, value, metadata });
   });
 
   return { metadata, content };
@@ -51,12 +56,38 @@ function getMdxData(dir: string) {
   return mdxData;
 }
 
-export function getPosts() {
-  return getMdxData(path.join(process.cwd(), 'app', 'posts', 'markdown'));
+// TODO: add pagination, sorting
+export function getPosts({
+  skip = 0,
+  take = 10,
+}: {
+  skip?: number;
+  take?: number;
+} = {}) {
+  const posts = getMdxData(
+    path.join(process.cwd(), 'app', 'posts', 'markdown')
+  );
+  console.log({ posts });
+  return posts;
 }
 
 // ======
 export function getPost(slug: string) {
   const allPosts = getPosts();
   return allPosts.find(({ slug: postSlug }) => slug === postSlug);
+}
+
+export function formatDate(date?: string) {
+  const dateObj = new Date(date ?? '');
+
+  if (dateObj.toString() === 'Invalid Date') {
+    return '';
+  }
+
+  // YYYY.MM.DD.
+  return dateObj.toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
 }

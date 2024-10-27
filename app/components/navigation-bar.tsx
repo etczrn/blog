@@ -40,6 +40,7 @@ export function NavigationBar() {
     <nav className="font-[family-name:var(--font-geist-mono)]">
       <ul className="hidden text-sm capitalize sm:flex w-fit">
         {links.map(({ href, label }) => (
+          // TODO: /posts/[slug] 일 때에도 posts 에 하이라이트 주기
           <li
             key={href}
             className={`mr-4 ${pathname === href ? 'font-semibold' : ''}`}
@@ -58,7 +59,10 @@ export function NavigationBar() {
       </Button>
       {mobileMenuOpen && (
         <div className="absolute inset-0 z-50 flex flex-col p-4 bg-white h-svh sm:hidden">
-          <Button onClick={() => setMobileMenuOpen(false)} className="ml-auto sm:hidden">
+          <Button
+            onClick={() => setMobileMenuOpen(false)}
+            className="ml-auto sm:hidden"
+          >
             <X size={24} />
           </Button>
           <ul className="py-8 text-4xl capitalize">

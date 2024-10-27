@@ -1,22 +1,35 @@
+import type { Metadata } from 'next';
 import { getPost } from '../lib/utils';
 import { Mdx } from './components/mdx';
 
-type Params = Promise<{ slug: string }>;
+type Props = { params: Promise<{ slug: string }> };
 
-// export async function generateMetadata(props: { params: Params }) {
-//   const params = await props.params;
-//   const slug = params.slug;
-// }
+// https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPost(slug);
 
-export async function generateStaticParams(props: { params: Params }) {
+  // optionally access and extend (rather than replace) parent metadata
+  // const previousImages = (await parent).openGraph?.images || []
+
+  return {
+    title: `${post?.metadata?.title ?? 'Post'} | I write to forget`,
+    // openGraph: {
+    //   images: ['/some-specific-page-image.jpg', ...previousImages],
+    // },
+  };
+}
+
+export async function generateStaticParams(props: Props) {
   const { slug } = await props.params;
   return [{ slug }];
 }
 
-export default async function Post(props: Readonly<{ params: Params }>) {
+export default async function Post(props: Readonly<Props>) {
   const { slug } = await props.params;
   const post = getPost(slug);
 
+  // TODO: not found page
   if (!post) return null;
 
   return (
