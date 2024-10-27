@@ -19,13 +19,14 @@ function parseFrontmatter(rawContent: string) {
   const frontMatterLines = frontMatterBlock.trim().split('\n');
   const metadata: Partial<Metadata> = {};
 
+  // TODO: add metadata
   frontMatterLines.forEach((line) => {
-    // console.log({ line });
-    const [key, ...valueArr] = line.split(': ');
-    let value = valueArr.join(': ').trim();
-    value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
+    console.log({ line });
+    // const [key, ...valueArr] = line.split(': ');
+    // let value = valueArr.join(': ').trim();
+    // value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
     // console.log({ key, value });
-    metadata[key.trim() as keyof Metadata] = value;
+    // metadata[key.trim() as keyof Metadata] = value;
     // console.log({ key, value, metadata });
   });
 
@@ -64,6 +65,7 @@ export function getPosts({
   skip?: number;
   take?: number;
 } = {}) {
+  console.log({ skip, take });
   const posts = getMdxData(
     path.join(process.cwd(), 'app', 'posts', 'markdown')
   );
