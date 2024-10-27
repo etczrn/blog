@@ -8,7 +8,7 @@ import {
   useMotionValue,
   useSpring,
 } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useState } from 'react';
 
 import { cn } from '@/app/lib/utils';
 import Image from 'next/image';
@@ -70,8 +70,8 @@ export const LinkPreview = ({
 
   const translateX = useSpring(x, springConfig);
 
-  const handleMouseMove = (event: any) => {
-    const targetRect = event.target.getBoundingClientRect();
+  const handleMouseMove: MouseEventHandler<HTMLAnchorElement> = (event) => {
+    const targetRect = (event.target as HTMLElement).getBoundingClientRect();
     const eventOffsetX = event.clientX - targetRect.left;
     const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2; // Reduce the effect to make it subtle
     x.set(offsetFromCenter);
