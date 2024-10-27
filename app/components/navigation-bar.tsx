@@ -18,7 +18,10 @@ export function NavigationBar() {
   ];
 
   useEffect(() => {
-    if (!mobileMenuOpen) return;
+    if (!mobileMenuOpen) {
+      document.body.style.overflow = 'unset';
+      return;
+    }
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -27,6 +30,8 @@ export function NavigationBar() {
     }
 
     window.addEventListener('keydown', handleKeyDown);
+
+    document.body.style.overflow = 'hidden';
 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
