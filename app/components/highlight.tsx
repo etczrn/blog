@@ -10,7 +10,7 @@ export function Highlight({
   children: ReactNode;
 }) {
   return (
-    <RoughNotation type="highlight" color="#bfdbfe" show={show} {...props}>
+    <RoughNotation type="highlight" color="#99f6e4" show={show} {...props}>
       {children}
     </RoughNotation>
   );
