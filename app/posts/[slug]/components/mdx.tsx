@@ -1,5 +1,14 @@
+import {
+  Blockquote,
+  Code,
+  H1,
+  H2,
+  H3,
+  H4,
+  P,
+  Ul,
+} from '@/app/components/ui/typography';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
-import { Blockquote, Code, H1, H2, H3, H4, P, Ul } from './typography';
 
 import { MDXComponents } from 'mdx/types';
 

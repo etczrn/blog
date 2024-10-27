@@ -1,16 +1,11 @@
-import { HTMLAttributes, ReactNode } from 'react';
-
+import { HTMLElementProps } from '@/app/components/ui/types';
 import { cn } from '@/app/lib/utils';
-
-interface TypographyProps<T = HTMLElement> extends HTMLAttributes<T> {
-  children: ReactNode;
-}
 
 export function H1({
   children,
   className,
   ...props
-}: Readonly<TypographyProps<HTMLHeadingElement>>) {
+}: Readonly<HTMLElementProps<HTMLHeadingElement>>) {
   return (
     <h1
       className={cn(
@@ -28,7 +23,7 @@ export function H2({
   children,
   className,
   ...props
-}: Readonly<TypographyProps<HTMLHeadingElement>>) {
+}: Readonly<HTMLElementProps<HTMLHeadingElement>>) {
   return (
     <h2
       className={cn(
@@ -46,7 +41,7 @@ export function H3({
   children,
   className,
   ...props
-}: Readonly<TypographyProps<HTMLHeadingElement>>) {
+}: Readonly<HTMLElementProps<HTMLHeadingElement>>) {
   return (
     <h3
       className={cn(
@@ -64,7 +59,7 @@ export function H4({
   children,
   className,
   ...props
-}: Readonly<TypographyProps<HTMLHeadingElement>>) {
+}: Readonly<HTMLElementProps<HTMLHeadingElement>>) {
   return (
     <h4
       className={cn(
@@ -82,7 +77,7 @@ export function P({
   children,
   className,
   ...props
-}: Readonly<TypographyProps<HTMLParagraphElement>>) {
+}: Readonly<HTMLElementProps<HTMLParagraphElement>>) {
   return (
     <p
       className={cn('leading-7 [&:not(:first-child)]:mt-6', className)}
@@ -97,7 +92,7 @@ export function Blockquote({
   children,
   className,
   ...props
-}: Readonly<TypographyProps>) {
+}: Readonly<HTMLElementProps>) {
   return (
     <blockquote
       className={cn('pl-6 mt-6 italic border-l-2', className)}
@@ -112,7 +107,7 @@ export function Ul({
   children,
   className,
   ...props
-}: Readonly<TypographyProps<HTMLUListElement>>) {
+}: Readonly<HTMLElementProps<HTMLUListElement>>) {
   return (
     <ul className={cn('my-6 ml-6 list-disc [&>li]:mt-2', className)} {...props}>
       {children}
@@ -124,7 +119,7 @@ export function Code({
   children,
   className,
   ...props
-}: Readonly<TypographyProps>) {
+}: Readonly<HTMLElementProps>) {
   return (
     <code
       className={cn(
