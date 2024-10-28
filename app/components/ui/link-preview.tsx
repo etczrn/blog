@@ -8,10 +8,10 @@ import {
   useMotionValue,
   useSpring,
 } from 'framer-motion';
+import Image, { StaticImageData } from 'next/image';
 import React, { MouseEventHandler, useEffect, useState } from 'react';
 
 import { cn } from '@/app/lib/utils';
-import Image from 'next/image';
 import Link from 'next/link';
 import { encode } from 'qss';
 
@@ -24,7 +24,7 @@ export type LinkPreviewProps = {
   quality?: number;
   layout?: string;
 } & (
-  | { isStatic: true; imageSrc: string }
+  | { isStatic: true; imageSrc: string | StaticImageData }
   | { isStatic?: false; imageSrc?: never }
 );
 

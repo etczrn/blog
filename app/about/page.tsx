@@ -3,6 +3,11 @@ import { Content, Link, ResumeBlock, Section } from './components/resume';
 import { FlipWords } from '@/app/components/ui/flip-words';
 import { H1 } from '@/app/components/ui/typography';
 import Image from 'next/image';
+import accounz from './assets/accounz.png';
+import eliceLecture from './assets/elice-lecture.png';
+import eliceReview from './assets/elice-review.png';
+import me from './assets/me.jpg';
+import shape from './assets/organic-shape.svg';
 import { Contacts } from './components/contact';
 
 export default function About() {
@@ -12,12 +17,13 @@ export default function About() {
         <div className="relative mx-auto my-4 max-w-fit">
           <H1 className="inline-block px-2 mt-0">김수연</H1>
           <Image
-            src={'/me.jpg'}
+            priority
+            src={me}
             alt="My Photo"
             width={360}
             height={360}
             style={{
-              maskImage: 'url(/organic-shape.svg)',
+              maskImage: `url(${shape.src})`,
               maskRepeat: 'no-repeat',
               maskSize: '100% 100%',
               maskPosition: 'center',
@@ -66,7 +72,7 @@ const WORK_EXPERIENCE: Content[] = [
       {
         title: (
           <>
-            <Link imageSrc={'/accounz.png'} url="https://accounz.io/">
+            <Link imageSrc={accounz} url="https://accounz.io/">
               어카운즈 홈페이지
             </Link>{' '}
             개발
@@ -106,7 +112,7 @@ const WORK_EXPERIENCE: Content[] = [
             교육생의 이해를 돕기 위해{' '}
             <Link
               url="https://etcz.notion.site/ELICE-d83443efe6334203811a669b27277825"
-              imageSrc={'/elice-lecture.png'}
+              imageSrc={eliceLecture}
             >
               주제별 학습 자료를 제작
             </Link>
@@ -116,7 +122,7 @@ const WORK_EXPERIENCE: Content[] = [
             코치 평가에서{' '}
             <Link
               url="https://docs.google.com/forms/d/1BoeeeXvR7RcqjwhxHe1Tto2pjJ9gN-fCuaaM1LmpLsI/viewanalytics"
-              imageSrc={'/elice-review.png'}
+              imageSrc={eliceReview}
             >
               {' '}
               직접 제작한 학습 자료와 강의 리딩 방식에 대해 높은 평가
