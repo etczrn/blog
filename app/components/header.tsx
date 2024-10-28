@@ -4,8 +4,8 @@ import { NavigationBar } from './navigation-bar';
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between min-h-16">
-      <Link href={'/'}>
+    <header className="sticky top-0 z-50 w-full min-h-16 flex items-center bg-white">
+      <Link href={'/'} className="max-w-fit">
         <Logo />
       </Link>
       <NavigationBar />

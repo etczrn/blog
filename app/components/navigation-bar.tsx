@@ -37,7 +37,7 @@ export function NavigationBar() {
   }, [mobileMenuOpen]);
 
   return (
-    <nav className="font-[family-name:var(--font-geist-mono)]">
+    <nav className="font-[family-name:var(--font-geist-mono)] ml-auto">
       <ul className="hidden text-sm capitalize sm:flex w-fit">
         {links.map(({ href, label }) => (
           // TODO: /posts/[slug] 일 때에도 posts 에 하이라이트 주기
