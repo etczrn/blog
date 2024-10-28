@@ -135,3 +135,24 @@ export function Code({
     </code>
   );
 }
+
+export function Anchor({
+  children,
+  href,
+  className,
+  ...props
+}: Readonly<HTMLElementProps<HTMLAnchorElement>> & { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      className={cn(
+        'font-semibold text-teal-500 border-b border-b-teal-900 border-opacity-25 after:content-["↗"] after:mx-0.5',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </a>
+  );
+}

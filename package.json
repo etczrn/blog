@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "pnpm velite dev",
+    "markdown": "pnpm velite dev",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
