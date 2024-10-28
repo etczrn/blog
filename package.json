@@ -6,6 +6,7 @@
     "markdown": "pnpm velite dev",
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "pnpm velite build",
     "start": "next start",
     "lint": "next lint"
   },
